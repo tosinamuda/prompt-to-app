@@ -1,0 +1,49 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# Environment & secrets
+.env
+.env.local
+.env.*.local
+*.key
+!.env.example
+
+# Data (large / generated at runtime)
+data/*.jsonl
+data/*.json
+!data/eval/induction_cases.jsonl
+!data/eval/ablation_results.json
+!data/eval/scaling_results.json
+
+# Caches
+.ruff_cache/
+.pytest_cache/
+.mypy_cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Claude Code / agent config (not part of the project)
+.claude/
+CLAUDE.md
+.agent/
+agent.md
+
+# Node (web/)
+web/node_modules/
+web/dist/
+web/dist-ssr/
+web/*.local

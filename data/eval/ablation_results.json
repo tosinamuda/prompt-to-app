@@ -1,0 +1,241 @@
+{
+  "model": "openrouter/openai/gpt-oss-120b",
+  "n_cases": 8,
+  "cv": "leave-one-out",
+  "summary": [
+    {
+      "condition": "severed",
+      "in_f1": 0.761,
+      "out_f1": 0.875,
+      "type_acc": 0.943,
+      "validity": 1.0,
+      "judge": 0.825
+    },
+    {
+      "condition": "fewshot",
+      "in_f1": 0.793,
+      "out_f1": 0.892,
+      "type_acc": 0.721,
+      "validity": 1.0,
+      "judge": 0.805
+    },
+    {
+      "condition": "bootstrap",
+      "in_f1": 0.734,
+      "out_f1": 0.875,
+      "type_acc": 0.944,
+      "validity": 1.0,
+      "judge": 0.875
+    },
+    {
+      "condition": "gepa",
+      "in_f1": 0.706,
+      "out_f1": 0.808,
+      "type_acc": 0.864,
+      "validity": 1.0,
+      "judge": 0.785
+    }
+  ],
+  "per_fold": {
+    "severed": [
+      {
+        "in_f1": 1.0,
+        "out_f1": 0.667,
+        "type_acc": 0.8,
+        "judge": 0.88
+      },
+      {
+        "in_f1": 1.0,
+        "out_f1": 1.0,
+        "type_acc": 1.0,
+        "judge": 0.92
+      },
+      {
+        "in_f1": 0.909,
+        "out_f1": 0.667,
+        "type_acc": 1.0,
+        "judge": 0.8
+      },
+      {
+        "in_f1": 0.8,
+        "out_f1": 1.0,
+        "type_acc": 1.0,
+        "judge": 0.76
+      },
+      {
+        "in_f1": 0.909,
+        "out_f1": 1.0,
+        "type_acc": 0.8,
+        "judge": 0.92
+      },
+      {
+        "in_f1": 0.0,
+        "out_f1": 0.667,
+        "type_acc": null,
+        "judge": 0.6
+      },
+      {
+        "in_f1": 0.8,
+        "out_f1": 1.0,
+        "type_acc": 1.0,
+        "judge": 0.76
+      },
+      {
+        "in_f1": 0.667,
+        "out_f1": 1.0,
+        "type_acc": 1.0,
+        "judge": 0.96
+      }
+    ],
+    "fewshot": [
+      {
+        "in_f1": 0.909,
+        "out_f1": 1.0,
+        "type_acc": 0.8,
+        "judge": 0.8
+      },
+      {
+        "in_f1": 0.667,
+        "out_f1": 1.0,
+        "type_acc": 0.5,
+        "judge": 0.88
+      },
+      {
+        "in_f1": 0.909,
+        "out_f1": 0.667,
+        "type_acc": 1.0,
+        "judge": 0.68
+      },
+      {
+        "in_f1": 0.857,
+        "out_f1": 1.0,
+        "type_acc": 0.667,
+        "judge": 0.76
+      },
+      {
+        "in_f1": 0.833,
+        "out_f1": 1.0,
+        "type_acc": 0.8,
+        "judge": 0.8
+      },
+      {
+        "in_f1": 0.333,
+        "out_f1": 0.667,
+        "type_acc": 0.0,
+        "judge": 0.84
+      },
+      {
+        "in_f1": 1.0,
+        "out_f1": 0.8,
+        "type_acc": 1.0,
+        "judge": 0.88
+      },
+      {
+        "in_f1": 0.833,
+        "out_f1": 1.0,
+        "type_acc": 1.0,
+        "judge": 0.8
+      }
+    ],
+    "bootstrap": [
+      {
+        "in_f1": 0.8,
+        "out_f1": 1.0,
+        "type_acc": 0.75,
+        "judge": 0.96
+      },
+      {
+        "in_f1": 0.857,
+        "out_f1": 0.667,
+        "type_acc": 1.0,
+        "judge": 0.92
+      },
+      {
+        "in_f1": 0.909,
+        "out_f1": 1.0,
+        "type_acc": 1.0,
+        "judge": 0.76
+      },
+      {
+        "in_f1": 0.667,
+        "out_f1": 1.0,
+        "type_acc": 1.0,
+        "judge": 0.68
+      },
+      {
+        "in_f1": 0.909,
+        "out_f1": 1.0,
+        "type_acc": 0.8,
+        "judge": 0.96
+      },
+      {
+        "in_f1": 0.4,
+        "out_f1": 0.667,
+        "type_acc": 1.0,
+        "judge": 0.84
+      },
+      {
+        "in_f1": 0.667,
+        "out_f1": 1.0,
+        "type_acc": 1.0,
+        "judge": 0.92
+      },
+      {
+        "in_f1": 0.667,
+        "out_f1": 0.667,
+        "type_acc": 1.0,
+        "judge": 0.96
+      }
+    ],
+    "gepa": [
+      {
+        "in_f1": 0.727,
+        "out_f1": 1.0,
+        "type_acc": 0.75,
+        "judge": 0.72
+      },
+      {
+        "in_f1": 0.857,
+        "out_f1": 1.0,
+        "type_acc": 1.0,
+        "judge": 0.72
+      },
+      {
+        "in_f1": 0.909,
+        "out_f1": 0.0,
+        "type_acc": 0.8,
+        "judge": 0.88
+      },
+      {
+        "in_f1": 0.8,
+        "out_f1": 1.0,
+        "type_acc": 1.0,
+        "judge": 0.8
+      },
+      {
+        "in_f1": 0.8,
+        "out_f1": 1.0,
+        "type_acc": 0.75,
+        "judge": 0.88
+      },
+      {
+        "in_f1": 0.0,
+        "out_f1": 0.667,
+        "type_acc": null,
+        "judge": 0.68
+      },
+      {
+        "in_f1": 0.889,
+        "out_f1": 0.8,
+        "type_acc": 0.75,
+        "judge": 0.96
+      },
+      {
+        "in_f1": 0.667,
+        "out_f1": 1.0,
+        "type_acc": 1.0,
+        "judge": 0.64
+      }
+    ]
+  }
+}

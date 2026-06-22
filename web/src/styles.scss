@@ -1,0 +1,230 @@
+// Carbon Design System (mirrors dspy-adk-ui's setup).
+@use "@carbon/react/scss/config" with (
+  $font-path: "https://1.www.s81c.com/common/carbon/plex/fonts"
+);
+@use "@carbon/react";
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+// ---- UI Shell offsets ------------------------------------------------------
+// Carbon Header is fixed at top, 3rem tall. Content sits below it and owns the
+// remaining viewport so each column scrolls independently (no page-level scroll).
+.shell-main {
+  margin-top: 3rem;
+  height: calc(100vh - 3rem);
+  display: flex;
+  flex-direction: column;
+  background: var(--cds-background);
+  color: var(--cds-text-primary);
+}
+
+// brand mark inside the dark header
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  color: var(--cds-text-on-color, #f4f4f4);
+}
+.model-chip {
+  align-self: center;
+  margin-right: 0.5rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.75rem;
+  color: #8d8d8d;
+  white-space: nowrap;
+}
+
+// ---- process strip (Hick's law: externalise the steps) ---------------------
+.progress-strip {
+  flex: 0 0 auto;
+  padding: 1rem 1.5rem;
+  background: var(--cds-layer-01);
+  border-bottom: 1px solid var(--cds-border-subtle-01);
+}
+
+// ---- two-column workspace (right column carries the priority) --------------
+.cols {
+  flex: 1 1 auto;
+  display: grid;
+  grid-template-columns: minmax(360px, 38%) 1fr;
+  min-height: 0;
+}
+@media (max-width: 900px) {
+  .cols {
+    grid-template-columns: 1fr;
+    overflow: auto;
+  }
+}
+
+.col {
+  min-height: 0;
+  overflow: auto;
+}
+.col-left {
+  padding: 1.5rem;
+  border-right: 1px solid var(--cds-border-subtle-01);
+}
+.col-right {
+  padding: 1.5rem;
+  display: flex;
+  background: var(--cds-layer-01);
+}
+@media (max-width: 900px) {
+  .col-right {
+    min-height: 70vh;
+  }
+}
+
+// ---- panels / typography ---------------------------------------------------
+.panel {
+  background: var(--cds-layer-01);
+}
+.panel-title {
+  margin: 0 0 0.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--cds-text-primary);
+}
+.panel-help {
+  margin: 0 0 1rem;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: var(--cds-text-secondary);
+}
+
+.example-row {
+  margin-top: 1rem;
+}
+
+// reuse-before-recompile suggestion
+.reuse-suggestion {
+  margin-top: 1rem;
+  padding: 0.875rem 1rem;
+  background: var(--cds-layer-02);
+  border-left: 3px solid var(--cds-support-info, #0043ce);
+}
+.reuse-title {
+  margin: 0 0 0.25rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--cds-text-primary);
+}
+.reuse-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+.compile-row {
+  margin-top: 1.5rem;
+  min-height: 2.5rem;
+  display: flex;
+  align-items: center;
+}
+
+// ---- induced signature -----------------------------------------------------
+.sig-head {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.sig-label {
+  margin: 1rem 0 0.25rem;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.32px;
+  color: var(--cds-text-secondary);
+}
+// Proper Carbon StructuredList: name cell takes the row, type tag shrinks right.
+.sig-list .cds--structured-list-td {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  color: var(--cds-text-primary);
+  vertical-align: middle;
+}
+.sig-list .sig-type {
+  width: 1%;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.trace {
+  margin: 0;
+  padding-left: 1rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.8125rem;
+  line-height: 1.8;
+  color: var(--cds-text-secondary);
+}
+
+// ---- generated app (clear frame + header affordance) -----------------------
+.gen-tile {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--cds-layer-01);
+  border: 1px solid var(--cds-border-subtle-01);
+}
+.gen-tile-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.625rem 1rem;
+  background: var(--cds-layer-02);
+  border-bottom: 1px solid var(--cds-border-subtle-01);
+}
+.gen-tile-titles {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+  min-width: 0;
+}
+.gen-kicker {
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.32px;
+  color: var(--cds-text-secondary);
+}
+.gen-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--cds-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.gen-frame {
+  flex: 1;
+  width: 100%;
+  border: 0;
+  background: #fff;
+}
+.gen-empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 2rem;
+  text-align: center;
+  color: var(--cds-text-helper);
+}
+.gen-empty svg {
+  color: var(--cds-icon-secondary);
+}
+.gen-empty-title {
+  margin: 0.75rem 0 0.25rem;
+  font-size: 1rem;
+  color: var(--cds-text-secondary);
+}
+.gen-empty .panel-help {
+  max-width: 36ch;
+}

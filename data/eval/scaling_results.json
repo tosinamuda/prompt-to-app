@@ -1,0 +1,70 @@
+[
+  {
+    "tier": "8B",
+    "model": "openrouter/meta-llama/llama-3.1-8b-instruct",
+    "in_f1": 0.6840277777777778,
+    "out_f1": 0.75,
+    "type_acc": 0.6690476190476191,
+    "validity": 1.0,
+    "time_s": 149.1,
+    "judge": 0.67,
+    "judge_dims": {
+      "captures_variable_parts": 3.25,
+      "output_completeness": 3.0,
+      "type_precision": 3.25,
+      "field_naming": 4.12,
+      "right_granularity": 3.12
+    }
+  },
+  {
+    "tier": "70B",
+    "model": "openrouter/meta-llama/llama-3.3-70b-instruct",
+    "in_f1": 0.6964285714285715,
+    "out_f1": 0.7916666666666666,
+    "type_acc": 0.71875,
+    "validity": 1.0,
+    "time_s": 52.9,
+    "judge": 0.79,
+    "judge_dims": {
+      "captures_variable_parts": 3.5,
+      "output_completeness": 4.12,
+      "type_precision": 4.12,
+      "field_naming": 4.38,
+      "right_granularity": 3.62
+    }
+  },
+  {
+    "tier": "120B",
+    "model": "openrouter/openai/gpt-oss-120b",
+    "in_f1": 0.7594155844155844,
+    "out_f1": 0.9333333333333333,
+    "type_acc": 0.9071428571428571,
+    "validity": 1.0,
+    "time_s": 47.6,
+    "judge": 0.925,
+    "judge_dims": {
+      "captures_variable_parts": 4.88,
+      "output_completeness": 4.75,
+      "type_precision": 4.0,
+      "field_naming": 4.75,
+      "right_granularity": 4.75
+    }
+  },
+  {
+    "tier": "front",
+    "model": "claude-cli/haiku",
+    "in_f1": 0.7044258373205742,
+    "out_f1": 0.5583333333333333,
+    "type_acc": 0.95,
+    "validity": 1.0,
+    "time_s": 102.6,
+    "judge": 0.89,
+    "judge_dims": {
+      "captures_variable_parts": 4.38,
+      "output_completeness": 4.75,
+      "type_precision": 4.0,
+      "field_naming": 5.0,
+      "right_granularity": 4.12
+    }
+  }
+]

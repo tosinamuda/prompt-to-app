@@ -1,0 +1,148 @@
+/* Generated-app styling — IBM Carbon tokens (literal values; this iframe is a separate
+   document without @carbon/styles CSS vars). Single-column flow, matched to the host. */
+@import url("https://1.www.s81c.com/common/carbon/plex/sans.css");
+
+:root {
+  --bg: #ffffff;
+  --field: #f4f4f4;
+  --border-strong: #8d8d8d;
+  --border-subtle: #e0e0e0;
+  --text: #161616;
+  --text-secondary: #525252;
+  --text-helper: #6f6f6f;
+  --interactive: #0f62fe;
+  --interactive-hover: #0353e9;
+  --error: #da1e28;
+  --skel: #e0e0e0;
+  --skel-hi: #f4f4f4;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.p2a { display: flex; flex-direction: column; min-height: 100vh; }
+
+/* optional header (only when not embedded by the host) */
+.p2a-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.p2a-header h1 { margin: 0.25rem 0 0; font-size: 1.25rem; font-weight: 600; }
+.p2a-kicker {
+  font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.32px;
+  color: var(--text-secondary); font-weight: 600;
+}
+.p2a-task {
+  font-family: "IBM Plex Mono", monospace; font-size: 0.75rem; color: var(--text-helper);
+  background: var(--field); padding: 0.25rem 0.5rem; white-space: nowrap;
+}
+
+/* single-column body: form, then output */
+.p2a-body { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+.p2a-form { padding: 1.5rem; }
+.p2a-output { padding: 1.5rem; border-top: 1px solid var(--border-subtle); }
+
+/* ---- form fields: exact Carbon field metrics ---- */
+.p2a-fields { display: flex; flex-direction: column; gap: 1.5rem; }
+.p2a-field { display: flex; flex-direction: column; }
+.p2a-field > label {
+  font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.5rem;
+}
+.p2a-field .req { color: var(--error); }
+.p2a-hint { font-size: 0.75rem; color: var(--text-helper); margin-top: 0.25rem; }
+
+.p2a-field input[type="text"],
+.p2a-field input[type="number"],
+.p2a-field input[type="date"],
+.p2a-field select {
+  height: 2.5rem;
+}
+.p2a-field input[type="text"],
+.p2a-field input[type="number"],
+.p2a-field input[type="date"],
+.p2a-field select,
+.p2a-field textarea {
+  width: 100%;
+  font-family: inherit; font-size: 0.875rem; color: var(--text);
+  background: var(--field);
+  border: none; border-bottom: 1px solid var(--border-strong);
+  padding: 0 1rem;
+  outline: 2px solid transparent; outline-offset: -2px;
+  transition: background 70ms;
+}
+.p2a-field textarea { padding: 0.6875rem 1rem; min-height: 6.5rem; resize: vertical; line-height: 1.4; }
+.p2a-field input:hover,
+.p2a-field select:hover,
+.p2a-field textarea:hover { background: #e8e8e8; }
+.p2a-field input:focus,
+.p2a-field select:focus,
+.p2a-field textarea:focus { outline: 2px solid var(--interactive); }
+
+.p2a-inputwrap { position: relative; display: flex; align-items: center; }
+.p2a-pre { position: absolute; left: 1rem; color: var(--text-helper); pointer-events: none; }
+.p2a-inputwrap .p2a-pre + input { padding-left: 1.75rem; }
+
+.p2a-check { flex-direction: row; align-items: center; gap: 0.75rem; }
+.p2a-check input { width: 1rem; height: 1rem; accent-color: var(--interactive); }
+.p2a-check label { font-size: 0.875rem; color: var(--text); margin: 0; }
+
+.p2a-constraints { margin-top: 1.5rem; font-size: 0.75rem; color: var(--text-secondary); }
+.p2a-constraints summary { cursor: pointer; color: var(--text-helper); }
+.p2a-constraints ul { margin: 0.5rem 0 0; padding-left: 1.125rem; line-height: 1.7; }
+
+/* ---- run button: Carbon primary ---- */
+.p2a-actions { margin-top: 2rem; }
+.p2a-btn {
+  font-family: inherit; font-size: 0.875rem; font-weight: 400;
+  height: 3rem; min-width: 12rem; padding: 0 1.25rem;
+  border: none; cursor: pointer; transition: background 70ms, transform 70ms;
+}
+.p2a-primary { background: var(--interactive); color: #fff; }
+.p2a-primary:hover { background: var(--interactive-hover); }
+.p2a-primary:active { transform: translateY(1px); }
+.p2a-primary:disabled { background: #c6c6c6; color: #8d8d8d; cursor: progress; }
+
+/* ---- output: dividers, not nested cards (anti-card-overuse) ---- */
+.p2a-out-head {
+  font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.32px;
+  color: var(--text-secondary); font-weight: 600; margin-bottom: 0.75rem;
+}
+.p2a-outblock { padding: 1rem 0; border-top: 1px solid var(--border-subtle); }
+.p2a-outblock:first-of-type { border-top: 0; padding-top: 0; }
+.p2a-outblock h3 {
+  margin: 0 0 0.5rem; font-size: 0.75rem; font-family: "IBM Plex Mono", monospace;
+  color: var(--interactive); font-weight: 500;
+}
+.p2a-outval { white-space: pre-wrap; line-height: 1.5; font-size: 0.875rem; color: var(--text); }
+.p2a-out-empty { color: var(--text-helper); font-size: 0.8125rem; }
+
+/* skeleton loader (matches output shape) */
+.p2a-skel {
+  height: 0.75rem; margin: 0.5rem 0; border-radius: 1px;
+  background: linear-gradient(90deg, var(--skel) 0%, var(--skel-hi) 50%, var(--skel) 100%);
+  background-size: 200% 100%;
+  animation: p2a-shimmer 1.2s ease-in-out infinite;
+}
+.p2a-skel.short { width: 40%; }
+@keyframes p2a-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.p2a-muted { color: var(--text-helper); }
+.p2a-error {
+  color: var(--error); background: #fff1f1; border-left: 3px solid var(--error);
+  padding: 0.625rem 0.75rem; font-size: 0.8125rem; margin: 0 0 1rem;
+}
