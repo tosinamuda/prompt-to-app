@@ -41,6 +41,9 @@ packages = ["src/prompt2app"]
 [tool.pytest.ini_options]
 pythonpath = ["src"]
 testpaths = ["tests"]
+# Default run stays offline/fast; integration tests load the real embedding model.
+addopts = "-m 'not integration'"
+markers = ["integration: loads the real embedding model (network/slow); run with -m integration"]
 
 [tool.ruff]
 line-length = 100
