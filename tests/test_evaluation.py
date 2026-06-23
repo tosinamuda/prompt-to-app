@@ -4,6 +4,7 @@ from prompt2app.evaluation import (
     field_prf,
     induction_metric,
     induction_metric_with_feedback,
+    reuse_coverage,
     signature_validity,
     type_accuracy,
 )
@@ -50,6 +51,34 @@ def _gold_example():
         ],
         program_outputs=[{"name": "email_body", "type": "text"}],
     )
+
+
+def test_reuse_coverage_full_when_all_required_present():
+    form = [{"name": "item"}, {"name": "quantity"}, {"name": "max_budget"}]
+    variants = [
+        {"required_inputs": ["item", "quantity"]},
+        {"required_inputs": ["item", "max_budget"]},
+    ]
+    score = reuse_coverage(form, variants)
+    assert score.binary == 1.0
+    assert score.graded == 1.0
+    assert score.n_variants == 2
+
+
+def test_reuse_coverage_partial_and_binary_differ():
+    form = [{"name": "item"}, {"name": "quantity"}]
+    variants = [
+        {"required_inputs": ["item", "quantity"]},          # fully covered
+        {"required_inputs": ["item", "deadline"]},          # 1 of 2 present
+    ]
+    score = reuse_coverage(form, variants)
+    assert score.binary == 0.5          # only the first variant is fully covered
+    assert score.graded == 0.75         # (2/2 + 1/2) / 2
+
+
+def test_reuse_coverage_empty_variants():
+    score = reuse_coverage([{"name": "item"}], [])
+    assert score.binary == 0.0 and score.graded == 0.0 and score.n_variants == 0
 
 
 def test_induction_metric_perfect():

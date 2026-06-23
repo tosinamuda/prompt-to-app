@@ -1,0 +1,826 @@
+{
+  "model": "openrouter/openai/gpt-oss-120b",
+  "judge_model": "claude-cli/sonnet",
+  "n_cases": 8,
+  "levels": [
+    "minimal",
+    "conservative",
+    "baseline",
+    "thorough",
+    "maximal"
+  ],
+  "by_level": [
+    {
+      "level": "minimal",
+      "median_field_count": 2,
+      "mean_field_count": 2.12,
+      "field_f1": 0.474,
+      "type_acc": 0.945,
+      "reuse_binary": 0.094,
+      "reuse_graded": 0.424,
+      "judge": 0.805
+    },
+    {
+      "level": "conservative",
+      "median_field_count": 4,
+      "mean_field_count": 4.0,
+      "field_f1": 0.786,
+      "type_acc": 0.912,
+      "reuse_binary": 0.594,
+      "reuse_graded": 0.829,
+      "judge": 0.88
+    },
+    {
+      "level": "baseline",
+      "median_field_count": 4,
+      "mean_field_count": 4.12,
+      "field_f1": 0.802,
+      "type_acc": 0.879,
+      "reuse_binary": 0.719,
+      "reuse_graded": 0.829,
+      "judge": 0.895
+    },
+    {
+      "level": "thorough",
+      "median_field_count": 5,
+      "mean_field_count": 4.62,
+      "field_f1": 0.668,
+      "type_acc": 0.812,
+      "reuse_binary": 0.469,
+      "reuse_graded": 0.789,
+      "judge": 0.87
+    },
+    {
+      "level": "maximal",
+      "median_field_count": 8,
+      "mean_field_count": 8.62,
+      "field_f1": 0.56,
+      "type_acc": 0.814,
+      "reuse_binary": 0.656,
+      "reuse_graded": 0.792,
+      "judge": 0.865
+    }
+  ],
+  "data_points": [
+    {
+      "case_id": 1,
+      "level": "minimal",
+      "prompt": "Write a polite email to a supplier asking for a revised quote for 20 laptops, under $30k, by Friday.",
+      "field_count": 1,
+      "field_f1": 0.0,
+      "out_f1": 1.0,
+      "type_acc": null,
+      "reuse_binary": 0.0,
+      "reuse_graded": 0.0,
+      "judge": 0.6,
+      "judge_dims": {
+        "captures_variable_parts": 2,
+        "output_completeness": 5,
+        "type_precision": 3,
+        "field_naming": 3,
+        "right_granularity": 2
+      }
+    },
+    {
+      "case_id": 1,
+      "level": "conservative",
+      "prompt": "Write a polite email to a supplier asking for a revised quote for 20 laptops, under $30k, by Friday.",
+      "field_count": 5,
+      "field_f1": 1.0,
+      "out_f1": 1.0,
+      "type_acc": 0.8,
+      "reuse_binary": 1.0,
+      "reuse_graded": 1.0,
+      "judge": 0.88,
+      "judge_dims": {
+        "captures_variable_parts": 4,
+        "output_completeness": 5,
+        "type_precision": 4,
+        "field_naming": 5,
+        "right_granularity": 4
+      }
+    },
+    {
+      "case_id": 1,
+      "level": "baseline",
+      "prompt": "Write a polite email to a supplier asking for a revised quote for 20 laptops, under $30k, by Friday.",
+      "field_count": 4,
+      "field_f1": 0.889,
+      "out_f1": 1.0,
+      "type_acc": 0.75,
+      "reuse_binary": 0.5,
+      "reuse_graded": 0.875,
+      "judge": 0.92,
+      "judge_dims": {
+        "captures_variable_parts": 5,
+        "output_completeness": 5,
+        "type_precision": 4,
+        "field_naming": 4,
+        "right_granularity": 5
+      }
+    },
+    {
+      "case_id": 1,
+      "level": "thorough",
+      "prompt": "Write a polite email to a supplier asking for a revised quote for 20 laptops, under $30k, by Friday.",
+      "field_count": 6,
+      "field_f1": 0.727,
+      "out_f1": 1.0,
+      "type_acc": 0.75,
+      "reuse_binary": 0.5,
+      "reuse_graded": 0.875,
+      "judge": 0.96,
+      "judge_dims": {
+        "captures_variable_parts": 5,
+        "output_completeness": 5,
+        "type_precision": 4,
+        "field_naming": 5,
+        "right_granularity": 5
+      }
+    },
+    {
+      "case_id": 1,
+      "level": "maximal",
+      "prompt": "Write a polite email to a supplier asking for a revised quote for 20 laptops, under $30k, by Friday.",
+      "field_count": 8,
+      "field_f1": 0.769,
+      "out_f1": 1.0,
+      "type_acc": 0.8,
+      "reuse_binary": 1.0,
+      "reuse_graded": 1.0,
+      "judge": 0.88,
+      "judge_dims": {
+        "captures_variable_parts": 5,
+        "output_completeness": 5,
+        "type_precision": 5,
+        "field_naming": 4,
+        "right_granularity": 3
+      }
+    },
+    {
+      "case_id": 2,
+      "level": "minimal",
+      "prompt": "Draft a GitHub issue for a login bug where the password reset email never arrives, priority high.",
+      "field_count": 2,
+      "field_f1": 0.8,
+      "out_f1": 0.667,
+      "type_acc": 1.0,
+      "reuse_binary": 0.0,
+      "reuse_graded": 0.625,
+      "judge": 0.88,
+      "judge_dims": {
+        "captures_variable_parts": 3,
+        "output_completeness": 5,
+        "type_precision": 5,
+        "field_naming": 5,
+        "right_granularity": 4
+      }
+    },
+    {
+      "case_id": 2,
+      "level": "conservative",
+      "prompt": "Draft a GitHub issue for a login bug where the password reset email never arrives, priority high.",
+      "field_count": 3,
+      "field_f1": 1.0,
+      "out_f1": 1.0,
+      "type_acc": 1.0,
+      "reuse_binary": 1.0,
+      "reuse_graded": 1.0,
+      "judge": 0.72,
+      "judge_dims": {
+        "captures_variable_parts": 4,
+        "output_completeness": 3,
+        "type_precision": 5,
+        "field_naming": 3,
+        "right_granularity": 3
+      }
+    },
+    {
+      "case_id": 2,
+      "level": "baseline",
+      "prompt": "Draft a GitHub issue for a login bug where the password reset email never arrives, priority high.",
+      "field_count": 4,
+      "field_f1": 0.857,
+      "out_f1": 1.0,
+      "type_acc": 1.0,
+      "reuse_binary": 1.0,
+      "reuse_graded": 1.0,
+      "judge": 0.8,
+      "judge_dims": {
+        "captures_variable_parts": 4,
+        "output_completeness": 4,
+        "type_precision": 5,
+        "field_naming": 3,
+        "right_granularity": 4
+      }
+    },
+    {
+      "case_id": 2,
+      "level": "thorough",
+      "prompt": "Draft a GitHub issue for a login bug where the password reset email never arrives, priority high.",
+      "field_count": 3,
+      "field_f1": 1.0,
+      "out_f1": 1.0,
+      "type_acc": 1.0,
+      "reuse_binary": 1.0,
+      "reuse_graded": 1.0,
+      "judge": 0.6,
+      "judge_dims": {
+        "captures_variable_parts": 2,
+        "output_completeness": 4,
+        "type_precision": 4,
+        "field_naming": 3,
+        "right_granularity": 2
+      }
+    },
+    {
+      "case_id": 2,
+      "level": "maximal",
+      "prompt": "Draft a GitHub issue for a login bug where the password reset email never arrives, priority high.",
+      "field_count": 4,
+      "field_f1": 0.571,
+      "out_f1": 1.0,
+      "type_acc": 0.5,
+      "reuse_binary": 0.0,
+      "reuse_graded": 0.625,
+      "judge": 0.84,
+      "judge_dims": {
+        "captures_variable_parts": 4,
+        "output_completeness": 5,
+        "type_precision": 4,
+        "field_naming": 4,
+        "right_granularity": 4
+      }
+    },
+    {
+      "case_id": 3,
+      "level": "minimal",
+      "prompt": "Create a deployment request for a Node.js service on Kubernetes with 3 replicas, staging environment, autoscaling enabled, and logs sent to CloudWatch.",
+      "field_count": 2,
+      "field_f1": 0.286,
+      "out_f1": 1.0,
+      "type_acc": 1.0,
+      "reuse_binary": 0.0,
+      "reuse_graded": 0.279,
+      "judge": 0.52,
+      "judge_dims": {
+        "captures_variable_parts": 2,
+        "output_completeness": 2,
+        "type_precision": 3,
+        "field_naming": 4,
+        "right_granularity": 2
+      }
+    },
+    {
+      "case_id": 3,
+      "level": "conservative",
+      "prompt": "Create a deployment request for a Node.js service on Kubernetes with 3 replicas, staging environment, autoscaling enabled, and logs sent to CloudWatch.",
+      "field_count": 6,
+      "field_f1": 0.909,
+      "out_f1": 1.0,
+      "type_acc": 1.0,
+      "reuse_binary": 1.0,
+      "reuse_graded": 1.0,
+      "judge": 0.88,
+      "judge_dims": {
+        "captures_variable_parts": 5,
+        "output_completeness": 4,
+        "type_precision": 4,
+        "field_naming": 5,
+        "right_granularity": 4
+      }
+    },
+    {
+      "case_id": 3,
+      "level": "baseline",
+      "prompt": "Create a deployment request for a Node.js service on Kubernetes with 3 replicas, staging environment, autoscaling enabled, and logs sent to CloudWatch.",
+      "field_count": 5,
+      "field_f1": 1.0,
+      "out_f1": 1.0,
+      "type_acc": 1.0,
+      "reuse_binary": 1.0,
+      "reuse_graded": 1.0,
+      "judge": 0.92,
+      "judge_dims": {
+        "captures_variable_parts": 4,
+        "output_completeness": 5,
+        "type_precision": 5,
+        "field_naming": 5,
+        "right_granularity": 4
+      }
+    },
+    {
+      "case_id": 3,
+      "level": "thorough",
+      "prompt": "Create a deployment request for a Node.js service on Kubernetes with 3 replicas, staging environment, autoscaling enabled, and logs sent to CloudWatch.",
+      "field_count": 8,
+      "field_f1": 0.769,
+      "out_f1": 0.667,
+      "type_acc": 1.0,
+      "reuse_binary": 1.0,
+      "reuse_graded": 1.0,
+      "judge": 0.88,
+      "judge_dims": {
+        "captures_variable_parts": 5,
+        "output_completeness": 3,
+        "type_precision": 5,
+        "field_naming": 5,
+        "right_granularity": 4
+      }
+    },
+    {
+      "case_id": 3,
+      "level": "maximal",
+      "prompt": "Create a deployment request for a Node.js service on Kubernetes with 3 replicas, staging environment, autoscaling enabled, and logs sent to CloudWatch.",
+      "field_count": 12,
+      "field_f1": 0.588,
+      "out_f1": 1.0,
+      "type_acc": 1.0,
+      "reuse_binary": 1.0,
+      "reuse_graded": 1.0,
+      "judge": 0.96,
+      "judge_dims": {
+        "captures_variable_parts": 5,
+        "output_completeness": 5,
+        "type_precision": 4,
+        "field_naming": 5,
+        "right_granularity": 5
+      }
+    },
+    {
+      "case_id": 4,
+      "level": "minimal",
+      "prompt": "Summarize a research paper for a busy executive in 3 bullet points.",
+      "field_count": 1,
+      "field_f1": 0.5,
+      "out_f1": 1.0,
+      "type_acc": 1.0,
+      "reuse_binary": 0.0,
+      "reuse_graded": 0.417,
+      "judge": 0.84,
+      "judge_dims": {
+        "captures_variable_parts": 4,
+        "output_completeness": 4,
+        "type_precision": 3,
+        "field_naming": 5,
+        "right_granularity": 5
+      }
+    },
+    {
+      "case_id": 4,
+      "level": "conservative",
+      "prompt": "Summarize a research paper for a busy executive in 3 bullet points.",
+      "field_count": 2,
+      "field_f1": 0.4,
+      "out_f1": 1.0,
+      "type_acc": 1.0,
+      "reuse_binary": 0.0,
+      "reuse_graded": 0.417,
+      "judge": 0.92,
+      "judge_dims": {
+        "captures_variable_parts": 5,
+        "output_completeness": 4,
+        "type_precision": 4,
+        "field_naming": 5,
+        "right_granularity": 5
+      }
+    },
+    {
+      "case_id": 4,
+      "level": "baseline",
+      "prompt": "Summarize a research paper for a busy executive in 3 bullet points.",
+      "field_count": 3,
+      "field_f1": 1.0,
+      "out_f1": 1.0,
+      "type_acc": 1.0,
+      "reuse_binary": 1.0,
+      "reuse_graded": 1.0,
+      "judge": 0.92,
+      "judge_dims": {
+        "captures_variable_parts": 5,
+        "output_completeness": 5,
+        "type_precision": 4,
+        "field_naming": 5,
+        "right_granularity": 4
+      }
+    },
+    {
+      "case_id": 4,
+      "level": "thorough",
+      "prompt": "Summarize a research paper for a busy executive in 3 bullet points.",
+      "field_count": 1,
+      "field_f1": 0.5,
+      "out_f1": 1.0,
+      "type_acc": 1.0,
+      "reuse_binary": 0.0,
+      "reuse_graded": 0.417,
+      "judge": 0.92,
+      "judge_dims": {
+        "captures_variable_parts": 4,
+        "output_completeness": 5,
+        "type_precision": 4,
+        "field_naming": 5,
+        "right_granularity": 5
+      }
+    },
+    {
+      "case_id": 4,
+      "level": "maximal",
+      "prompt": "Summarize a research paper for a busy executive in 3 bullet points.",
+      "field_count": 11,
+      "field_f1": 0.286,
+      "out_f1": 1.0,
+      "type_acc": 1.0,
+      "reuse_binary": 0.25,
+      "reuse_graded": 0.708,
+      "judge": 0.8,
+      "judge_dims": {
+        "captures_variable_parts": 4,
+        "output_completeness": 5,
+        "type_precision": 4,
+        "field_naming": 5,
+        "right_granularity": 2
+      }
+    },
+    {
+      "case_id": 5,
+      "level": "minimal",
+      "prompt": "Generate a professional LinkedIn post announcing our Series B funding of $45M led by Sequoia, targeting founders and VCs, keeping it under 200 words.",
+      "field_count": 4,
+      "field_f1": 0.889,
+      "out_f1": 1.0,
+      "type_acc": 1.0,
+      "reuse_binary": 0.5,
+      "reuse_graded": 0.867,
+      "judge": 0.92,
+      "judge_dims": {
+        "captures_variable_parts": 4,
+        "output_completeness": 5,
+        "type_precision": 5,
+        "field_naming": 5,
+        "right_granularity": 4
+      }
+    },
+    {
+      "case_id": 5,
+      "level": "conservative",
+      "prompt": "Generate a professional LinkedIn post announcing our Series B funding of $45M led by Sequoia, targeting founders and VCs, keeping it under 200 words.",
+      "field_count": 4,
+      "field_f1": 0.889,
+      "out_f1": 1.0,
+      "type_acc": 1.0,
+      "reuse_binary": 0.5,
+      "reuse_graded": 0.867,
+      "judge": 0.92,
+      "judge_dims": {
+        "captures_variable_parts": 4,
+        "output_completeness": 5,
+        "type_precision": 5,
+        "field_naming": 5,
+        "right_granularity": 4
+      }
+    },
+    {
+      "case_id": 5,
+      "level": "baseline",
+      "prompt": "Generate a professional LinkedIn post announcing our Series B funding of $45M led by Sequoia, targeting founders and VCs, keeping it under 200 words.",
+      "field_count": 5,
+      "field_f1": 1.0,
+      "out_f1": 1.0,
+      "type_acc": 0.6,
+      "reuse_binary": 1.0,
+      "reuse_graded": 1.0,
+      "judge": 0.96,
+      "judge_dims": {
+        "captures_variable_parts": 5,
+        "output_completeness": 5,
+        "type_precision": 4,
+        "field_naming": 5,
+        "right_granularity": 5
+      }
+    },
+    {
+      "case_id": 5,
+      "level": "thorough",
+      "prompt": "Generate a professional LinkedIn post announcing our Series B funding of $45M led by Sequoia, targeting founders and VCs, keeping it under 200 words.",
+      "field_count": 5,
+      "field_f1": 0.8,
+      "out_f1": 1.0,
+      "type_acc": 0.75,
+      "reuse_binary": 0.5,
+      "reuse_graded": 0.867,
+      "judge": 0.92,
+      "judge_dims": {
+        "captures_variable_parts": 4,
+        "output_completeness": 5,
+        "type_precision": 5,
+        "field_naming": 5,
+        "right_granularity": 4
+      }
+    },
+    {
+      "case_id": 5,
+      "level": "maximal",
+      "prompt": "Generate a professional LinkedIn post announcing our Series B funding of $45M led by Sequoia, targeting founders and VCs, keeping it under 200 words.",
+      "field_count": 6,
+      "field_f1": 0.909,
+      "out_f1": 1.0,
+      "type_acc": 0.6,
+      "reuse_binary": 1.0,
+      "reuse_graded": 1.0,
+      "judge": 0.96,
+      "judge_dims": {
+        "captures_variable_parts": 5,
+        "output_completeness": 5,
+        "type_precision": 4,
+        "field_naming": 5,
+        "right_granularity": 5
+      }
+    },
+    {
+      "case_id": 6,
+      "level": "minimal",
+      "prompt": "Write a product comparison table for noise-cancelling headphones: Sony WH-1000XM5 vs Bose QuietComfort Ultra vs Apple AirPods Max, comparing price, battery life, weight, and ANC quality.",
+      "field_count": 2,
+      "field_f1": 0.0,
+      "out_f1": 0.667,
+      "type_acc": null,
+      "reuse_binary": 0.0,
+      "reuse_graded": 0.0,
+      "judge": 0.92,
+      "judge_dims": {
+        "captures_variable_parts": 5,
+        "output_completeness": 5,
+        "type_precision": 3,
+        "field_naming": 5,
+        "right_granularity": 5
+      }
+    },
+    {
+      "case_id": 6,
+      "level": "conservative",
+      "prompt": "Write a product comparison table for noise-cancelling headphones: Sony WH-1000XM5 vs Bose QuietComfort Ultra vs Apple AirPods Max, comparing price, battery life, weight, and ANC quality.",
+      "field_count": 3,
+      "field_f1": 0.4,
+      "out_f1": 0.667,
+      "type_acc": 1.0,
+      "reuse_binary": 0.25,
+      "reuse_graded": 0.625,
+      "judge": 0.88,
+      "judge_dims": {
+        "captures_variable_parts": 4,
+        "output_completeness": 5,
+        "type_precision": 3,
+        "field_naming": 5,
+        "right_granularity": 5
+      }
+    },
+    {
+      "case_id": 6,
+      "level": "baseline",
+      "prompt": "Write a product comparison table for noise-cancelling headphones: Sony WH-1000XM5 vs Bose QuietComfort Ultra vs Apple AirPods Max, comparing price, battery life, weight, and ANC quality.",
+      "field_count": 3,
+      "field_f1": 0.0,
+      "out_f1": 0.667,
+      "type_acc": null,
+      "reuse_binary": 0.0,
+      "reuse_graded": 0.0,
+      "judge": 0.84,
+      "judge_dims": {
+        "captures_variable_parts": 4,
+        "output_completeness": 5,
+        "type_precision": 3,
+        "field_naming": 5,
+        "right_granularity": 4
+      }
+    },
+    {
+      "case_id": 6,
+      "level": "thorough",
+      "prompt": "Write a product comparison table for noise-cancelling headphones: Sony WH-1000XM5 vs Bose QuietComfort Ultra vs Apple AirPods Max, comparing price, battery life, weight, and ANC quality.",
+      "field_count": 3,
+      "field_f1": 0.4,
+      "out_f1": 0.667,
+      "type_acc": 0.0,
+      "reuse_binary": 0.25,
+      "reuse_graded": 0.625,
+      "judge": 0.76,
+      "judge_dims": {
+        "captures_variable_parts": 3,
+        "output_completeness": 5,
+        "type_precision": 3,
+        "field_naming": 5,
+        "right_granularity": 3
+      }
+    },
+    {
+      "case_id": 6,
+      "level": "maximal",
+      "prompt": "Write a product comparison table for noise-cancelling headphones: Sony WH-1000XM5 vs Bose QuietComfort Ultra vs Apple AirPods Max, comparing price, battery life, weight, and ANC quality.",
+      "field_count": 7,
+      "field_f1": 0.0,
+      "out_f1": 0.667,
+      "type_acc": null,
+      "reuse_binary": 0.0,
+      "reuse_graded": 0.0,
+      "judge": 0.72,
+      "judge_dims": {
+        "captures_variable_parts": 4,
+        "output_completeness": 5,
+        "type_precision": 3,
+        "field_naming": 4,
+        "right_granularity": 2
+      }
+    },
+    {
+      "case_id": 7,
+      "level": "minimal",
+      "prompt": "Create a weekly meal plan for a vegetarian family of 4 with a grocery budget of $150, no nuts due to allergies.",
+      "field_count": 3,
+      "field_f1": 0.75,
+      "out_f1": 1.0,
+      "type_acc": 0.667,
+      "reuse_binary": 0.25,
+      "reuse_graded": 0.771,
+      "judge": 0.92,
+      "judge_dims": {
+        "captures_variable_parts": 4,
+        "output_completeness": 5,
+        "type_precision": 5,
+        "field_naming": 5,
+        "right_granularity": 4
+      }
+    },
+    {
+      "case_id": 7,
+      "level": "conservative",
+      "prompt": "Create a weekly meal plan for a vegetarian family of 4 with a grocery budget of $150, no nuts due to allergies.",
+      "field_count": 4,
+      "field_f1": 0.889,
+      "out_f1": 1.0,
+      "type_acc": 0.75,
+      "reuse_binary": 0.5,
+      "reuse_graded": 0.833,
+      "judge": 0.92,
+      "judge_dims": {
+        "captures_variable_parts": 5,
+        "output_completeness": 5,
+        "type_precision": 4,
+        "field_naming": 5,
+        "right_granularity": 4
+      }
+    },
+    {
+      "case_id": 7,
+      "level": "baseline",
+      "prompt": "Create a weekly meal plan for a vegetarian family of 4 with a grocery budget of $150, no nuts due to allergies.",
+      "field_count": 5,
+      "field_f1": 1.0,
+      "out_f1": 1.0,
+      "type_acc": 0.8,
+      "reuse_binary": 1.0,
+      "reuse_graded": 1.0,
+      "judge": 0.92,
+      "judge_dims": {
+        "captures_variable_parts": 5,
+        "output_completeness": 5,
+        "type_precision": 3,
+        "field_naming": 5,
+        "right_granularity": 5
+      }
+    },
+    {
+      "case_id": 7,
+      "level": "thorough",
+      "prompt": "Create a weekly meal plan for a vegetarian family of 4 with a grocery budget of $150, no nuts due to allergies.",
+      "field_count": 6,
+      "field_f1": 0.545,
+      "out_f1": 0.8,
+      "type_acc": 1.0,
+      "reuse_binary": 0.25,
+      "reuse_graded": 0.771,
+      "judge": 0.92,
+      "judge_dims": {
+        "captures_variable_parts": 5,
+        "output_completeness": 5,
+        "type_precision": 4,
+        "field_naming": 5,
+        "right_granularity": 4
+      }
+    },
+    {
+      "case_id": 7,
+      "level": "maximal",
+      "prompt": "Create a weekly meal plan for a vegetarian family of 4 with a grocery budget of $150, no nuts due to allergies.",
+      "field_count": 7,
+      "field_f1": 0.833,
+      "out_f1": 0.8,
+      "type_acc": 0.8,
+      "reuse_binary": 1.0,
+      "reuse_graded": 1.0,
+      "judge": 0.84,
+      "judge_dims": {
+        "captures_variable_parts": 5,
+        "output_completeness": 5,
+        "type_precision": 3,
+        "field_naming": 5,
+        "right_granularity": 3
+      }
+    },
+    {
+      "case_id": 8,
+      "level": "minimal",
+      "prompt": "Draft a cover letter for a senior backend engineer role at Stripe, highlighting 8 years of Python and distributed systems experience.",
+      "field_count": 2,
+      "field_f1": 0.571,
+      "out_f1": 1.0,
+      "type_acc": 1.0,
+      "reuse_binary": 0.0,
+      "reuse_graded": 0.433,
+      "judge": 0.84,
+      "judge_dims": {
+        "captures_variable_parts": 3,
+        "output_completeness": 5,
+        "type_precision": 5,
+        "field_naming": 5,
+        "right_granularity": 3
+      }
+    },
+    {
+      "case_id": 8,
+      "level": "conservative",
+      "prompt": "Draft a cover letter for a senior backend engineer role at Stripe, highlighting 8 years of Python and distributed systems experience.",
+      "field_count": 5,
+      "field_f1": 0.8,
+      "out_f1": 1.0,
+      "type_acc": 0.75,
+      "reuse_binary": 0.5,
+      "reuse_graded": 0.887,
+      "judge": 0.92,
+      "judge_dims": {
+        "captures_variable_parts": 5,
+        "output_completeness": 5,
+        "type_precision": 4,
+        "field_naming": 5,
+        "right_granularity": 4
+      }
+    },
+    {
+      "case_id": 8,
+      "level": "baseline",
+      "prompt": "Draft a cover letter for a senior backend engineer role at Stripe, highlighting 8 years of Python and distributed systems experience.",
+      "field_count": 4,
+      "field_f1": 0.667,
+      "out_f1": 1.0,
+      "type_acc": 1.0,
+      "reuse_binary": 0.25,
+      "reuse_graded": 0.754,
+      "judge": 0.88,
+      "judge_dims": {
+        "captures_variable_parts": 4,
+        "output_completeness": 5,
+        "type_precision": 4,
+        "field_naming": 5,
+        "right_granularity": 4
+      }
+    },
+    {
+      "case_id": 8,
+      "level": "thorough",
+      "prompt": "Draft a cover letter for a senior backend engineer role at Stripe, highlighting 8 years of Python and distributed systems experience.",
+      "field_count": 5,
+      "field_f1": 0.6,
+      "out_f1": 1.0,
+      "type_acc": 1.0,
+      "reuse_binary": 0.25,
+      "reuse_graded": 0.754,
+      "judge": 1.0,
+      "judge_dims": {
+        "captures_variable_parts": 5,
+        "output_completeness": 5,
+        "type_precision": 5,
+        "field_naming": 5,
+        "right_granularity": 5
+      }
+    },
+    {
+      "case_id": 8,
+      "level": "maximal",
+      "prompt": "Draft a cover letter for a senior backend engineer role at Stripe, highlighting 8 years of Python and distributed systems experience.",
+      "field_count": 14,
+      "field_f1": 0.526,
+      "out_f1": 1.0,
+      "type_acc": 1.0,
+      "reuse_binary": 1.0,
+      "reuse_graded": 1.0,
+      "judge": 0.92,
+      "judge_dims": {
+        "captures_variable_parts": 5,
+        "output_completeness": 4,
+        "type_precision": 5,
+        "field_naming": 5,
+        "right_granularity": 4
+      }
+    }
+  ]
+}

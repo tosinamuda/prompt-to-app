@@ -1,4 +1,10 @@
-from prompt2app.induction import _clean_fields, _disambiguate, slug
+from prompt2app.induction import (
+    InduceAppSignature,
+    SignatureInducer,
+    _clean_fields,
+    _disambiguate,
+    slug,
+)
 from prompt2app.schemas import InducedField
 
 
@@ -33,3 +39,17 @@ def test_disambiguate_renames_output_colliding_with_input():
     outputs = [InducedField(name="title", type="string")]
     _disambiguate(inputs, outputs)
     assert outputs[0].name == "title_result"
+
+
+def test_granularity_hint_appended_to_instructions():
+    inducer = SignatureInducer(granularity_hint="Extract only one field.")
+    signature = inducer.induce.predict.signature
+    assert "GRANULARITY DIRECTIVE: Extract only one field." in signature.instructions
+    # The base task instructions and field names (prompt tokens) are preserved.
+    assert InduceAppSignature.instructions in signature.instructions
+    assert "input_parameters" in signature.output_fields
+
+
+def test_no_hint_leaves_base_signature_unchanged():
+    signature = SignatureInducer().induce.predict.signature
+    assert signature.instructions == InduceAppSignature.instructions

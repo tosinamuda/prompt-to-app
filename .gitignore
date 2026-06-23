@@ -21,6 +21,9 @@ data/*.json
 !data/eval/ablation_results.json
 !data/eval/scaling_results.json
 
+# Figures — keep the version-friendly SVG, regenerate PDFs from data + plot_results.py
+figures/*.pdf
+
 # Caches
 .ruff_cache/
 .pytest_cache/
