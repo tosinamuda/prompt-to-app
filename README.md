@@ -1,5 +1,7 @@
 # Prompt2App
 
+[![CI](https://github.com/tosinamuda/prompt-to-app/actions/workflows/ci.yml/badge.svg)](https://github.com/tosinamuda/prompt-to-app/actions/workflows/ci.yml)
+
 **Turn a natural-language prompt into a reusable, typed, optimizable LLM application with a generated UI.**
 
 Prompt2App is a prompt compiler that treats free-form prompts as latent application specifications. Instead of throwing away a prompt after one use, it induces a typed signature (inputs, outputs, constraints), compiles it into an optimizable [DSPy](https://dspy.ai) program, and generates a form-based UI — so a prompt becomes a reusable tool, not a throwaway message.
