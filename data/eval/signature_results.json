@@ -1,0 +1,360 @@
+{
+  "model": "openrouter/openai/gpt-oss-120b",
+  "judge_model": "claude-cli/haiku",
+  "summary": [
+    {
+      "variant": "detailed+cot",
+      "instruction_chars": 1339,
+      "in_f1": 0.76,
+      "out_f1": 0.792,
+      "type_acc": 0.8,
+      "judge": 0.81
+    },
+    {
+      "variant": "detailed+predict",
+      "instruction_chars": 1339,
+      "in_f1": 0.681,
+      "out_f1": 0.833,
+      "type_acc": 0.879,
+      "judge": 0.81
+    },
+    {
+      "variant": "lean+cot",
+      "instruction_chars": 253,
+      "in_f1": 0.612,
+      "out_f1": 0.85,
+      "type_acc": 0.875,
+      "judge": 0.86
+    },
+    {
+      "variant": "lean+predict",
+      "instruction_chars": 253,
+      "in_f1": 0.643,
+      "out_f1": 0.854,
+      "type_acc": 0.857,
+      "judge": 0.805
+    }
+  ],
+  "data_points": [
+    {
+      "case_id": 1,
+      "variant": "detailed+cot",
+      "prompt": "Write a polite email to a supplier asking for a revised quote for 20 laptops, under $30k, by Friday.",
+      "in_f1": 0.909,
+      "out_f1": 1.0,
+      "type_acc": 0.8,
+      "n_inputs": 6,
+      "judge": 0.96
+    },
+    {
+      "case_id": 1,
+      "variant": "detailed+predict",
+      "prompt": "Write a polite email to a supplier asking for a revised quote for 20 laptops, under $30k, by Friday.",
+      "in_f1": 0.8,
+      "out_f1": 1.0,
+      "type_acc": 0.75,
+      "n_inputs": 5,
+      "judge": 0.84
+    },
+    {
+      "case_id": 1,
+      "variant": "lean+cot",
+      "prompt": "Write a polite email to a supplier asking for a revised quote for 20 laptops, under $30k, by Friday.",
+      "in_f1": 0.615,
+      "out_f1": 1.0,
+      "type_acc": 0.75,
+      "n_inputs": 8,
+      "judge": 0.84
+    },
+    {
+      "case_id": 1,
+      "variant": "lean+predict",
+      "prompt": "Write a polite email to a supplier asking for a revised quote for 20 laptops, under $30k, by Friday.",
+      "in_f1": 0.727,
+      "out_f1": 1.0,
+      "type_acc": 0.75,
+      "n_inputs": 6,
+      "judge": 0.84
+    },
+    {
+      "case_id": 2,
+      "variant": "detailed+cot",
+      "prompt": "Draft a GitHub issue for a login bug where the password reset email never arrives, priority high.",
+      "in_f1": 1.0,
+      "out_f1": 0.0,
+      "type_acc": 1.0,
+      "n_inputs": 3,
+      "judge": 0.88
+    },
+    {
+      "case_id": 2,
+      "variant": "detailed+predict",
+      "prompt": "Draft a GitHub issue for a login bug where the password reset email never arrives, priority high.",
+      "in_f1": 0.667,
+      "out_f1": 1.0,
+      "type_acc": 1.0,
+      "n_inputs": 6,
+      "judge": 0.8
+    },
+    {
+      "case_id": 2,
+      "variant": "lean+cot",
+      "prompt": "Draft a GitHub issue for a login bug where the password reset email never arrives, priority high.",
+      "in_f1": 0.444,
+      "out_f1": 1.0,
+      "type_acc": 0.5,
+      "n_inputs": 6,
+      "judge": 0.88
+    },
+    {
+      "case_id": 2,
+      "variant": "lean+predict",
+      "prompt": "Draft a GitHub issue for a login bug where the password reset email never arrives, priority high.",
+      "in_f1": 0.857,
+      "out_f1": 0.667,
+      "type_acc": 1.0,
+      "n_inputs": 4,
+      "judge": 0.72
+    },
+    {
+      "case_id": 3,
+      "variant": "detailed+cot",
+      "prompt": "Create a deployment request for a Node.js service on Kubernetes with 3 replicas, staging environment, autoscaling enabled, and logs sent to CloudWatch.",
+      "in_f1": 0.714,
+      "out_f1": 0.667,
+      "type_acc": 1.0,
+      "n_inputs": 9,
+      "judge": 0.8
+    },
+    {
+      "case_id": 3,
+      "variant": "detailed+predict",
+      "prompt": "Create a deployment request for a Node.js service on Kubernetes with 3 replicas, staging environment, autoscaling enabled, and logs sent to CloudWatch.",
+      "in_f1": 0.769,
+      "out_f1": 0.0,
+      "type_acc": 1.0,
+      "n_inputs": 8,
+      "judge": 0.8
+    },
+    {
+      "case_id": 3,
+      "variant": "lean+cot",
+      "prompt": "Create a deployment request for a Node.js service on Kubernetes with 3 replicas, staging environment, autoscaling enabled, and logs sent to CloudWatch.",
+      "in_f1": 0.769,
+      "out_f1": 0.667,
+      "type_acc": 1.0,
+      "n_inputs": 8,
+      "judge": 1.0
+    },
+    {
+      "case_id": 3,
+      "variant": "lean+predict",
+      "prompt": "Create a deployment request for a Node.js service on Kubernetes with 3 replicas, staging environment, autoscaling enabled, and logs sent to CloudWatch.",
+      "in_f1": 0.769,
+      "out_f1": 0.5,
+      "type_acc": 1.0,
+      "n_inputs": 8,
+      "judge": 0.84
+    },
+    {
+      "case_id": 4,
+      "variant": "detailed+cot",
+      "prompt": "Summarize a research paper for a busy executive in 3 bullet points.",
+      "in_f1": 0.857,
+      "out_f1": 1.0,
+      "type_acc": 1.0,
+      "n_inputs": 4,
+      "judge": 0.72
+    },
+    {
+      "case_id": 4,
+      "variant": "detailed+predict",
+      "prompt": "Summarize a research paper for a busy executive in 3 bullet points.",
+      "in_f1": 0.5,
+      "out_f1": 1.0,
+      "type_acc": 1.0,
+      "n_inputs": 5,
+      "judge": 0.72
+    },
+    {
+      "case_id": 4,
+      "variant": "lean+cot",
+      "prompt": "Summarize a research paper for a busy executive in 3 bullet points.",
+      "in_f1": 0.333,
+      "out_f1": 1.0,
+      "type_acc": 1.0,
+      "n_inputs": 3,
+      "judge": 0.88
+    },
+    {
+      "case_id": 4,
+      "variant": "lean+predict",
+      "prompt": "Summarize a research paper for a busy executive in 3 bullet points.",
+      "in_f1": 0.5,
+      "out_f1": 1.0,
+      "type_acc": 1.0,
+      "n_inputs": 1,
+      "judge": 0.72
+    },
+    {
+      "case_id": 5,
+      "variant": "detailed+cot",
+      "prompt": "Generate a professional LinkedIn post announcing our Series B funding of $45M led by Sequoia, targeting founders and VCs, keeping it under 200 words.",
+      "in_f1": 1.0,
+      "out_f1": 1.0,
+      "type_acc": 0.6,
+      "n_inputs": 5,
+      "judge": 0.96
+    },
+    {
+      "case_id": 5,
+      "variant": "detailed+predict",
+      "prompt": "Generate a professional LinkedIn post announcing our Series B funding of $45M led by Sequoia, targeting founders and VCs, keeping it under 200 words.",
+      "in_f1": 0.909,
+      "out_f1": 1.0,
+      "type_acc": 0.6,
+      "n_inputs": 6,
+      "judge": 0.88
+    },
+    {
+      "case_id": 5,
+      "variant": "lean+cot",
+      "prompt": "Generate a professional LinkedIn post announcing our Series B funding of $45M led by Sequoia, targeting founders and VCs, keeping it under 200 words.",
+      "in_f1": 0.727,
+      "out_f1": 0.667,
+      "type_acc": 1.0,
+      "n_inputs": 6,
+      "judge": 0.96
+    },
+    {
+      "case_id": 5,
+      "variant": "lean+predict",
+      "prompt": "Generate a professional LinkedIn post announcing our Series B funding of $45M led by Sequoia, targeting founders and VCs, keeping it under 200 words.",
+      "in_f1": 0.8,
+      "out_f1": 1.0,
+      "type_acc": 0.75,
+      "n_inputs": 5,
+      "judge": 0.92
+    },
+    {
+      "case_id": 6,
+      "variant": "detailed+cot",
+      "prompt": "Write a product comparison table for noise-cancelling headphones: Sony WH-1000XM5 vs Bose QuietComfort Ultra vs Apple AirPods Max, comparing price, battery life, weight, and ANC quality.",
+      "in_f1": 0.333,
+      "out_f1": 0.667,
+      "type_acc": 0.0,
+      "n_inputs": 4,
+      "judge": 0.6
+    },
+    {
+      "case_id": 6,
+      "variant": "detailed+predict",
+      "prompt": "Write a product comparison table for noise-cancelling headphones: Sony WH-1000XM5 vs Bose QuietComfort Ultra vs Apple AirPods Max, comparing price, battery life, weight, and ANC quality.",
+      "in_f1": 0.0,
+      "out_f1": 0.667,
+      "type_acc": null,
+      "n_inputs": 2,
+      "judge": 0.72
+    },
+    {
+      "case_id": 6,
+      "variant": "lean+cot",
+      "prompt": "Write a product comparison table for noise-cancelling headphones: Sony WH-1000XM5 vs Bose QuietComfort Ultra vs Apple AirPods Max, comparing price, battery life, weight, and ANC quality.",
+      "in_f1": 0.5,
+      "out_f1": 0.667,
+      "type_acc": 1.0,
+      "n_inputs": 2,
+      "judge": 0.68
+    },
+    {
+      "case_id": 6,
+      "variant": "lean+predict",
+      "prompt": "Write a product comparison table for noise-cancelling headphones: Sony WH-1000XM5 vs Bose QuietComfort Ultra vs Apple AirPods Max, comparing price, battery life, weight, and ANC quality.",
+      "in_f1": 0.0,
+      "out_f1": 0.667,
+      "type_acc": null,
+      "n_inputs": 2,
+      "judge": 0.76
+    },
+    {
+      "case_id": 7,
+      "variant": "detailed+cot",
+      "prompt": "Create a weekly meal plan for a vegetarian family of 4 with a grocery budget of $150, no nuts due to allergies.",
+      "in_f1": 0.6,
+      "out_f1": 1.0,
+      "type_acc": 1.0,
+      "n_inputs": 5,
+      "judge": 0.92
+    },
+    {
+      "case_id": 7,
+      "variant": "detailed+predict",
+      "prompt": "Create a weekly meal plan for a vegetarian family of 4 with a grocery budget of $150, no nuts due to allergies.",
+      "in_f1": 1.0,
+      "out_f1": 1.0,
+      "type_acc": 0.8,
+      "n_inputs": 5,
+      "judge": 0.8
+    },
+    {
+      "case_id": 7,
+      "variant": "lean+cot",
+      "prompt": "Create a weekly meal plan for a vegetarian family of 4 with a grocery budget of $150, no nuts due to allergies.",
+      "in_f1": 0.889,
+      "out_f1": 0.8,
+      "type_acc": 0.75,
+      "n_inputs": 4,
+      "judge": 0.8
+    },
+    {
+      "case_id": 7,
+      "variant": "lean+predict",
+      "prompt": "Create a weekly meal plan for a vegetarian family of 4 with a grocery budget of $150, no nuts due to allergies.",
+      "in_f1": 0.889,
+      "out_f1": 1.0,
+      "type_acc": 0.5,
+      "n_inputs": 4,
+      "judge": 0.72
+    },
+    {
+      "case_id": 8,
+      "variant": "detailed+cot",
+      "prompt": "Draft a cover letter for a senior backend engineer role at Stripe, highlighting 8 years of Python and distributed systems experience.",
+      "in_f1": 0.667,
+      "out_f1": 1.0,
+      "type_acc": 1.0,
+      "n_inputs": 4,
+      "judge": 0.64
+    },
+    {
+      "case_id": 8,
+      "variant": "detailed+predict",
+      "prompt": "Draft a cover letter for a senior backend engineer role at Stripe, highlighting 8 years of Python and distributed systems experience.",
+      "in_f1": 0.8,
+      "out_f1": 1.0,
+      "type_acc": 1.0,
+      "n_inputs": 5,
+      "judge": 0.92
+    },
+    {
+      "case_id": 8,
+      "variant": "lean+cot",
+      "prompt": "Draft a cover letter for a senior backend engineer role at Stripe, highlighting 8 years of Python and distributed systems experience.",
+      "in_f1": 0.615,
+      "out_f1": 1.0,
+      "type_acc": 1.0,
+      "n_inputs": 8,
+      "judge": 0.84
+    },
+    {
+      "case_id": 8,
+      "variant": "lean+predict",
+      "prompt": "Draft a cover letter for a senior backend engineer role at Stripe, highlighting 8 years of Python and distributed systems experience.",
+      "in_f1": 0.6,
+      "out_f1": 1.0,
+      "type_acc": 1.0,
+      "n_inputs": 5,
+      "judge": 0.92
+    }
+  ]
+}

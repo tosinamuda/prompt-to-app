@@ -54,22 +54,30 @@ class InduceAppSignature(dspy.Signature):
 class SignatureInducer(dspy.Module):
     """Wraps the induction signature; supports loading learned demonstrations.
 
-    ``granularity_hint`` appends a directive controlling how finely the prompt is
-    parameterized (how many input knobs to lift). The field names — the part the
-    model reads as prompt text — are untouched; only the instruction varies. This
-    is the lever for the RQ3 parameterization-granularity study.
+    The signature is the prompt surface, so it is configurable for ablations:
+      - ``instructions`` replaces the docstring (e.g. a lean seed vs the detailed one)
+      - ``granularity_hint`` appends a directive on how finely to parameterize (RQ3)
+      - ``use_cot`` picks ChainOfThought (reasoning) vs Predict (cheaper, direct)
+    Field names — the tokens the model reads — are untouched throughout.
     """
 
-    def __init__(self, granularity_hint: str | None = None) -> None:
+    def __init__(
+        self,
+        granularity_hint: str | None = None,
+        *,
+        use_cot: bool = True,
+        instructions: str | None = None,
+    ) -> None:
         super().__init__()
-        signature = InduceAppSignature
+        base = InduceAppSignature.instructions if instructions is None else instructions
         if granularity_hint:
-            instructions = (
-                f"{InduceAppSignature.instructions}"
-                f"\n\nGRANULARITY DIRECTIVE: {granularity_hint}"
-            )
-            signature = InduceAppSignature.with_instructions(instructions)
-        self.induce = dspy.ChainOfThought(signature)
+            base = f"{base}\n\nGRANULARITY DIRECTIVE: {granularity_hint}"
+        signature = (
+            InduceAppSignature if base == InduceAppSignature.instructions
+            else InduceAppSignature.with_instructions(base)
+        )
+        module = dspy.ChainOfThought if use_cot else dspy.Predict
+        self.induce = module(signature)
 
     def forward(self, raw_prompt: str) -> AppSpec:
         pred = self.induce(raw_prompt=raw_prompt)
