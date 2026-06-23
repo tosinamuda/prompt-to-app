@@ -111,7 +111,8 @@ def type_accuracy(pred: list[dict[str, Any]], gold: list[dict[str, Any]]) -> flo
 
     if not matched_pairs:
         return None
-    return sum(1 for pred_n, gold_n in matched_pairs if pt[pred_n] == gt[gold_n]) / len(matched_pairs)
+    correct = sum(1 for pred_n, gold_n in matched_pairs if pt[pred_n] == gt[gold_n])
+    return correct / len(matched_pairs)
 
 
 def signature_validity(app: AppSpec) -> bool:
@@ -123,6 +124,42 @@ def signature_validity(app: AppSpec) -> bool:
         return True
     except Exception:
         return False
+
+
+@dataclass
+class ReuseScore:
+    """How many follow-up task variants a compiled form can serve without recompiling."""
+
+    binary: float  # fraction of variants whose every required field is present
+    graded: float  # mean fraction of each variant's required fields present
+    n_variants: int
+
+
+def reuse_coverage(pred_inputs: list[dict[str, Any]], variants: list[dict[str, Any]]) -> ReuseScore:
+    """Does the form's set of input knobs cover what realistic rephrasings need?
+
+    A variant is *fully covered* when every field it requires matches an input in the
+    form (exact or semantic name match). ``binary`` is the fraction of fully-covered
+    variants; ``graded`` is the mean per-variant fraction of required fields present.
+    More input fields tend to raise coverage — the cost side of the granularity trade.
+    """
+    form_names = _names(pred_inputs)
+    covered = 0
+    graded_total = 0.0
+    counted = 0
+    for variant in variants:
+        required = {slug(n) for n in variant.get("required_inputs", []) if n}
+        if not required:
+            continue
+        counted += 1
+        exact, semantic = _match_field_names(required, form_names)
+        matched = exact | set(semantic)
+        graded_total += len(matched) / len(required)
+        if matched >= required:
+            covered += 1
+    if not counted:
+        return ReuseScore(binary=0.0, graded=0.0, n_variants=0)
+    return ReuseScore(binary=covered / counted, graded=graded_total / counted, n_variants=counted)
 
 
 @dataclass
@@ -201,7 +238,9 @@ def _score_induction(example, pred):
         all_pairs.extend(sem_in.items())
         for pred_n, gold_n in sorted(all_pairs):
             if pt.get(pred_n) and gt.get(gold_n) and pt[pred_n] != gt[gold_n]:
-                problems.append(f"wrong type for '{gold_n}': got '{pt[pred_n]}', expected '{gt[gold_n]}'")
+                problems.append(
+                    f"wrong type for '{gold_n}': got '{pt[pred_n]}', expected '{gt[gold_n]}'"
+                )
     if not valid:
         problems.append("signature is invalid (cannot compile into a runnable program)")
 

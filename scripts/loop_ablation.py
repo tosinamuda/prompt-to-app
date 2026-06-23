@@ -18,22 +18,19 @@ from __future__ import annotations
 
 import json
 import os
-import sys
 import time
 from pathlib import Path
 
 import dspy
 from dotenv import load_dotenv
 
-load_dotenv()
-
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
-
 from prompt2app.claude_lm import make_lm
-from prompt2app.evaluation import CaseScore, PRF, mean, score_case
-from prompt2app.induction import SignatureInducer, slug
+from prompt2app.evaluation import PRF, CaseScore, mean, score_case
+from prompt2app.induction import SignatureInducer
 from prompt2app.llm_judge import SchemaJudge, format_schema, judge_score
-from prompt2app.schemas import AppSpec, InducedField
+from prompt2app.schemas import AppSpec
+
+load_dotenv()
 
 CASES_PATH = Path(__file__).resolve().parents[1] / "data" / "eval" / "induction_cases.jsonl"
 
@@ -179,7 +176,7 @@ def run_judge_batch(
 ) -> dict[str, list[float]]:
     results: dict[str, list[float]] = {c: [] for c in condition_apps}
     for cond, apps in condition_apps.items():
-        for case, app in zip(cases, apps):
+        for case, app in zip(cases, apps, strict=True):
             if app is None:
                 results[cond].append(0.0)
                 continue
@@ -219,7 +216,7 @@ def main() -> None:
         train_cases = [c for j, c in enumerate(cases) if j != i]
         train_meta = [m for j, m in enumerate(GOLD_META) if j != i]
         train_examples = [
-            gold_to_example(c, m) for c, m in zip(train_cases, train_meta)
+            gold_to_example(c, m) for c, m in zip(train_cases, train_meta, strict=True)
         ]
 
         prompt_short = test_case["prompt"][:55]

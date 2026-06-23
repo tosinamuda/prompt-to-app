@@ -16,22 +16,19 @@ from __future__ import annotations
 
 import json
 import os
-import sys
 import time
 from pathlib import Path
 
 import dspy
 from dotenv import load_dotenv
 
-load_dotenv()
-
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
-
 from prompt2app.claude_lm import make_lm
 from prompt2app.evaluation import CaseScore, mean, score_case
 from prompt2app.induction import SignatureInducer
 from prompt2app.llm_judge import SchemaJudge, format_schema, judge_score
 from prompt2app.schemas import AppSpec
+
+load_dotenv()
 
 CASES_PATH = Path(__file__).resolve().parents[1] / "data" / "eval" / "induction_cases.jsonl"
 
@@ -92,7 +89,7 @@ def run_judge(
         case_scores: list[float] = []
         dim_totals = {d: 0.0 for d in dims}
         n_scored = 0
-        for case, app in zip(cases, apps):
+        for case, app in zip(cases, apps, strict=True):
             if app is None:
                 case_scores.append(0.0)
                 continue
@@ -203,7 +200,7 @@ def main() -> None:
     dim_names = ["captures_variable_parts", "output_completeness",
                  "type_precision", "field_naming", "right_granularity"]
     dim_short = ["var_parts", "out_compl", "type_prec", "naming", "granular"]
-    print(f"\nJudge dimension breakdown (mean per tier, 1-5 scale):")
+    print("\nJudge dimension breakdown (mean per tier, 1-5 scale):")
     hdr2 = f"{'tier':<8}" + "".join(f"{s:>12}" for s in dim_short)
     print(hdr2)
     print("─" * len(hdr2))

@@ -38,10 +38,13 @@ class InduceAppSignature(dspy.Signature):
         desc="One or two sentences describing what the program does. Becomes its instructions."
     )
     input_parameters: list[InducedField] = dspy.OutputField(
-        desc="Reusable input knobs the user can change on each run — each with a snake_case name, a type from {string, text, integer, number, money, date, boolean, enum}, and optionally a default value lifted from the prompt."
+        desc="Reusable input knobs the user can change on each run — each with a snake_case "
+        "name, a type from {string, text, integer, number, money, date, boolean, enum}, and "
+        "optionally a default value lifted from the prompt."
     )
     program_outputs: list[InducedField] = dspy.OutputField(
-        desc="Typed output slots the program produces. Each needs a clear snake_case name and a type. No default values."
+        desc="Typed output slots the program produces. Each needs a clear snake_case name "
+        "and a type. No default values."
     )
     constraints: list[str] = dspy.OutputField(
         desc="Short imperative requirements not captured as inputs."
@@ -49,11 +52,24 @@ class InduceAppSignature(dspy.Signature):
 
 
 class SignatureInducer(dspy.Module):
-    """Wraps the induction signature; supports loading learned demonstrations."""
+    """Wraps the induction signature; supports loading learned demonstrations.
 
-    def __init__(self) -> None:
+    ``granularity_hint`` appends a directive controlling how finely the prompt is
+    parameterized (how many input knobs to lift). The field names — the part the
+    model reads as prompt text — are untouched; only the instruction varies. This
+    is the lever for the RQ3 parameterization-granularity study.
+    """
+
+    def __init__(self, granularity_hint: str | None = None) -> None:
         super().__init__()
-        self.induce = dspy.ChainOfThought(InduceAppSignature)
+        signature = InduceAppSignature
+        if granularity_hint:
+            instructions = (
+                f"{InduceAppSignature.instructions}"
+                f"\n\nGRANULARITY DIRECTIVE: {granularity_hint}"
+            )
+            signature = InduceAppSignature.with_instructions(instructions)
+        self.induce = dspy.ChainOfThought(signature)
 
     def forward(self, raw_prompt: str) -> AppSpec:
         pred = self.induce(raw_prompt=raw_prompt)
