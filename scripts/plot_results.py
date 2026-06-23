@@ -131,11 +131,40 @@ def plot_loop_ablation() -> None:
     _save(fig, "loop_ablation")
 
 
+def plot_loop_ablation_heatmap() -> None:
+    """RQ4: per-fold judge score by condition — shows variance across LOOCV folds."""
+    path = DATA / "ablation_results.json"
+    if not path.exists():
+        print("  skip ablation heatmap — run scripts/loop_ablation.py first")
+        return
+    per_fold = json.loads(path.read_text())["per_fold"]
+    conditions = list(per_fold.keys())
+    n_folds = len(next(iter(per_fold.values())))
+    matrix = [[per_fold[c][f]["judge"] for f in range(n_folds)] for c in conditions]
+
+    fig, ax = plt.subplots()
+    im = ax.imshow(matrix, cmap="cividis", aspect="auto", vmin=0, vmax=1)
+    ax.set_xticks(range(n_folds))
+    ax.set_xticklabels([f"F{f + 1}" for f in range(n_folds)])
+    ax.set_yticks(range(len(conditions)))
+    ax.set_yticklabels(conditions)
+    for i in range(len(conditions)):
+        for j in range(n_folds):
+            ax.text(j, i, f"{matrix[i][j]:.2f}", ha="center", va="center",
+                    color="white" if matrix[i][j] < 0.5 else "black", fontsize=7)
+    ax.set_xlabel("LOOCV fold")
+    ax.set_ylabel("Condition")
+    ax.set_title("RQ4: Per-fold judge score by condition")
+    fig.colorbar(im, ax=ax, label="Judge score")
+    _save(fig, "loop_ablation_heatmap")
+
+
 def main() -> None:
     print("Rendering figures…")
     plot_granularity_tradeoff()
     plot_scaling()
     plot_loop_ablation()
+    plot_loop_ablation_heatmap()
 
 
 if __name__ == "__main__":
