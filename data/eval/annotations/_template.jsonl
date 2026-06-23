@@ -1,0 +1,8 @@
+{"case_id": 1, "prompt": "Write a polite email to a supplier asking for a revised quote for 20 laptops, under $30k, by Friday.", "inputs": [], "outputs": []}
+{"case_id": 2, "prompt": "Draft a GitHub issue for a login bug where the password reset email never arrives, priority high.", "inputs": [], "outputs": []}
+{"case_id": 3, "prompt": "Create a deployment request for a Node.js service on Kubernetes with 3 replicas, staging environment, autoscaling enabled, and logs sent to CloudWatch.", "inputs": [], "outputs": []}
+{"case_id": 4, "prompt": "Summarize a research paper for a busy executive in 3 bullet points.", "inputs": [], "outputs": []}
+{"case_id": 5, "prompt": "Generate a professional LinkedIn post announcing our Series B funding of $45M led by Sequoia, targeting founders and VCs, keeping it under 200 words.", "inputs": [], "outputs": []}
+{"case_id": 6, "prompt": "Write a product comparison table for noise-cancelling headphones: Sony WH-1000XM5 vs Bose QuietComfort Ultra vs Apple AirPods Max, comparing price, battery life, weight, and ANC quality.", "inputs": [], "outputs": []}
+{"case_id": 7, "prompt": "Create a weekly meal plan for a vegetarian family of 4 with a grocery budget of $150, no nuts due to allergies.", "inputs": [], "outputs": []}
+{"case_id": 8, "prompt": "Draft a cover letter for a senior backend engineer role at Stripe, highlighting 8 years of Python and distributed systems experience.", "inputs": [], "outputs": []}
