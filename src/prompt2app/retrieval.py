@@ -28,8 +28,14 @@ _STOP = {
     "create", "make", "draft", "generate", "i", "want", "need", "me", "my", "we", "our",
 }
 
+# Default similarity cut-off for the semantic path, calibrated in
+# scripts/calibrate_retrieval.py: paraphrases score >=0.76, unrelated prompts <=0.60,
+# so 0.68 sits in the gap. (The old 0.5 admitted unrelated prompts as matches.)
+SEMANTIC_MIN_SCORE = 0.68
+
 _embedder: TextEmbedding | None = None
 _embed_failed = False
+_corpus_cache: dict[str, np.ndarray] = {}
 
 
 def _get_embedder() -> TextEmbedding | None:
@@ -51,6 +57,19 @@ def _embed(texts: list[str]) -> np.ndarray:
     if emb is None:
         raise RuntimeError("no embedder")
     return np.array(list(emb.embed(texts)))
+
+
+def _embed_corpus(texts: list[str]) -> np.ndarray:
+    """Embed stored-app prompts, reusing cached vectors so a stable corpus is embedded once.
+
+    Keyed by prompt text, so an edited prompt re-embeds and an unchanged one is free —
+    the query keeps repeated retrieval near O(1) in the corpus size.
+    """
+    missing = [t for t in dict.fromkeys(texts) if t not in _corpus_cache]
+    if missing:
+        for text, vec in zip(missing, _embed(missing), strict=True):
+            _corpus_cache[text] = vec
+    return np.array([_corpus_cache[t] for t in texts])
 
 
 def _cosine(a: np.ndarray, b: np.ndarray) -> float:
@@ -96,7 +115,9 @@ class AppMatch(BaseModel):
     source_prompt: str
 
 
-def find_similar(prompt: str, *, k: int = 3, min_score: float = 0.5) -> list[AppMatch]:
+def find_similar(
+    prompt: str, *, k: int = 3, min_score: float = SEMANTIC_MIN_SCORE,
+) -> list[AppMatch]:
     """Top-k previously compiled apps whose source prompt is similar to `prompt`."""
     apps = [a for a in app_store.all_apps() if (a.source_prompt or "").strip()]
     if not apps:
@@ -112,13 +133,12 @@ def find_similar(prompt: str, *, k: int = 3, min_score: float = 0.5) -> list[App
 def _find_semantic(
     prompt: str, apps: list, *, k: int, min_score: float
 ) -> list[AppMatch]:
-    texts = [prompt] + [a.source_prompt for a in apps]
-    vecs = _embed(texts)
-    query_vec = vecs[0]
+    query_vec = _embed([prompt])[0]
+    app_vecs = _embed_corpus([a.source_prompt for a in apps])
 
     matches: list[AppMatch] = []
     for i, app in enumerate(apps):
-        score = _cosine(query_vec, vecs[i + 1])
+        score = _cosine(query_vec, app_vecs[i])
         if score >= min_score:
             matches.append(
                 AppMatch(
