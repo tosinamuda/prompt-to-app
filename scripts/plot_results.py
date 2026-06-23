@@ -75,9 +75,96 @@ def plot_granularity_tradeoff() -> None:
     _save(fig, "granularity_tradeoff")
 
 
+def plot_scaling() -> None:
+    """RQ2: induction quality across model tiers."""
+    path = DATA / "scaling_results.json"
+    if not path.exists():
+        print("  skip scaling — run scripts/scaling_study.py first")
+        return
+    rows = json.loads(path.read_text())
+    tiers = [r["tier"] for r in rows]
+    xs = list(range(len(tiers)))
+    width = 0.35
+
+    fig, ax = plt.subplots()
+    ax.bar([x - width / 2 for x in xs], [r["judge"] for r in rows], width,
+           color=BLUE, label="Judge score")
+    ax.bar([x + width / 2 for x in xs], [r["in_f1"] for r in rows], width,
+           color=GREEN, label="Input field F1")
+
+    ax.set_xticks(xs)
+    ax.set_xticklabels(tiers)
+    ax.set_xlabel("Model tier (small → frontier)")
+    ax.set_ylabel("Score (0–1)")
+    ax.set_ylim(0, 1.05)
+    ax.set_title("RQ2: Induction quality scales with model size")
+    ax.legend(fontsize=8, loc="lower right")
+    _save(fig, "scaling_quality")
+
+
+def plot_loop_ablation() -> None:
+    """RQ4: the four feedback-loop conditions across metrics."""
+    path = DATA / "ablation_results.json"
+    if not path.exists():
+        print("  skip ablation — run scripts/loop_ablation.py first")
+        return
+    summary = json.loads(path.read_text())["summary"]
+    conditions = [r["condition"] for r in summary]
+    metrics = [("in_f1", "Input F1", BLUE), ("out_f1", "Output F1", GREEN),
+               ("type_acc", "Type acc", ORANGE), ("judge", "Judge", VERMILLION)]
+    xs = list(range(len(conditions)))
+    width = 0.2
+
+    fig, ax = plt.subplots()
+    for i, (key, label, color) in enumerate(metrics):
+        offset = (i - (len(metrics) - 1) / 2) * width
+        ax.bar([x + offset for x in xs], [r[key] for r in summary], width,
+               color=color, label=label)
+
+    ax.set_xticks(xs)
+    ax.set_xticklabels(conditions)
+    ax.set_xlabel("Feedback-loop condition")
+    ax.set_ylabel("Score (0–1)")
+    ax.set_ylim(0, 1.05)
+    ax.set_title("RQ4: Loop ablation — metrics by condition")
+    ax.legend(fontsize=8, loc="lower right", ncol=2)
+    _save(fig, "loop_ablation")
+
+
+def plot_loop_ablation_heatmap() -> None:
+    """RQ4: per-fold judge score by condition — shows variance across LOOCV folds."""
+    path = DATA / "ablation_results.json"
+    if not path.exists():
+        print("  skip ablation heatmap — run scripts/loop_ablation.py first")
+        return
+    per_fold = json.loads(path.read_text())["per_fold"]
+    conditions = list(per_fold.keys())
+    n_folds = len(next(iter(per_fold.values())))
+    matrix = [[per_fold[c][f]["judge"] for f in range(n_folds)] for c in conditions]
+
+    fig, ax = plt.subplots()
+    im = ax.imshow(matrix, cmap="cividis", aspect="auto", vmin=0, vmax=1)
+    ax.set_xticks(range(n_folds))
+    ax.set_xticklabels([f"F{f + 1}" for f in range(n_folds)])
+    ax.set_yticks(range(len(conditions)))
+    ax.set_yticklabels(conditions)
+    for i in range(len(conditions)):
+        for j in range(n_folds):
+            ax.text(j, i, f"{matrix[i][j]:.2f}", ha="center", va="center",
+                    color="white" if matrix[i][j] < 0.5 else "black", fontsize=7)
+    ax.set_xlabel("LOOCV fold")
+    ax.set_ylabel("Condition")
+    ax.set_title("RQ4: Per-fold judge score by condition")
+    fig.colorbar(im, ax=ax, label="Judge score")
+    _save(fig, "loop_ablation_heatmap")
+
+
 def main() -> None:
     print("Rendering figures…")
     plot_granularity_tradeoff()
+    plot_scaling()
+    plot_loop_ablation()
+    plot_loop_ablation_heatmap()
 
 
 if __name__ == "__main__":
