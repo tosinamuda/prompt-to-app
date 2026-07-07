@@ -1,0 +1,54 @@
+=== FOLD 1 (3160 chars, judge 0.92) ===
+Compile a raw natural-language prompt into a reusable, parameterized LLM program.
+
+This is *parameter abstraction*, not entity extraction. Do not just tag entities.
+Decide which parts of the prompt should become reusable INPUT knobs the user can
+change, which parts are fixed task-defining CONSTRAINTS, and what typed OUTPUTS the
+program should produce.
+
+Reason in this order:
+1. Identify the underlying task (what is being produced?). Name it in snake_case.
+2. Lift every value a user might reasonably want to vary into an input field:
+   entities (item, quantity), but also style/tone, audience, format, deadlines.
+   Prefer fewer, meaningful knobs over one knob per word.
+3. Assign each input a type from this closed set:
+   string, text, integer, number, money, date, boolean, enum.
+   Use enum (with options) for fields whose values come from a well-known CLOSED
+   domain set (e.g. funding_round: ['Pre-Seed', 'Seed', 'Series A', 'Series B',
+   'Series C']). Use string for fields that are genuinely open-ended or free-form
+   (e.g. target_audience, company). Use text for multi-sentence or multi-item values.
+4. For each input, copy the concrete value present in the prompt into `value`
+   (as a string) so the generated form is pre-filled. Leave null if absent.
+5. Define the typed outputs the program should return. Use descriptive but concise
+   names that describe the content, not the medium (e.g. `post_text` not
+   `linkedin_post`, `cover_letter_text` not `cover_letter`).
+6. Capture non-parameterizable requirements as short imperative constraints
+   (e.g. "mention the budget", "use a polite tone"). Do not duplicate inputs here.
+
+## Strict grounding rule
+Do NOT invent fields that are not explicitly stated or clearly implied by the prompt.
+- Only add `tone` if the prompt explicitly mentions a tone or style preference.
+- Only add outputs that the prompt explicitly asks for.
+- Do not add diagnostic or metadata outputs (e.g. `word_count`) unless the prompt asks for them.
+
+## Grouping rule
+When the prompt expresses a naturally bundled concept, keep it as one field rather
+than splitting it. For example, "8 years of Python and distributed systems experience"
+should become a single `skills` field of type `text`, not separate `primary_language`
+and `domain_experience` fields.
+
+## Naming conventions
+Follow these established naming patterns:
+- Word/character limits: `max_words`, `max_characters` (not `word_limit`, `max_word_count`)
+- Company references: `company` (not `company_name`)
+- Skills and expertise lists: `skills` (type: text)
+- Generic text output fields: use the content type, not the medium
+  (e.g. `post_text`, `email_body`, `cover_letter_text`)
+- Keep all names concise and in snake_case
+
+## Type assignment guidance
+- `funding_round`: use `enum` with options like ['Pre-Seed', 'Seed', 'Series A', 'Series B', 'Series C']
+  because funding stages form a well-known closed set
+- `target_audience`: use `string` — audiences are free-form descriptions, not a closed set
+- `tone`: use `enum` only if tone is explicitly mentioned in the prompt; never infer it
+- Quantities and counts: use `integer`; monetary values: use `money`

@@ -1,0 +1,43 @@
+{
+  "config": {
+    "budget": 300,
+    "valset": "candidates",
+    "seed_instructions": "detailed",
+    "n_folds": 1
+  },
+  "model": "openrouter/openai/gpt-oss-120b",
+  "reflection_model": "claude-cli/sonnet",
+  "judge_model": "claude-cli/haiku",
+  "summary": {
+    "n_folds": 1,
+    "mean_seed_chars": 1339.0,
+    "mean_evolved_chars": 3160.0,
+    "mean_base_judge": 0.88,
+    "mean_gepa_judge": 0.92,
+    "mean_delta_judge": 0.04,
+    "corr_evolved_len_vs_judge": 0.0,
+    "mean_train_names_leaked": 9.0
+  },
+  "per_fold": [
+    {
+      "fold": 1,
+      "seed_chars": 1339,
+      "evolved_chars": 3160,
+      "base_judge": 0.88,
+      "gepa_judge": 0.92,
+      "base_in_f1": 0.889,
+      "gepa_in_f1": 0.889,
+      "train_field_names_in_instruction": [
+        "audience",
+        "company",
+        "cover_letter",
+        "funding_round",
+        "max_words",
+        "post_text",
+        "skills",
+        "target_audience",
+        "tone"
+      ]
+    }
+  ]
+}
