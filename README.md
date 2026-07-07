@@ -104,12 +104,12 @@ React + Vite + [Carbon Design System](https://carbondesignsystem.com/). Communic
 
 ## Research
 
-This prototype is an instrument for studying **prompt-to-program compilation**. The core research questions:
+This prototype is the measurement instrument for studying **latent specification recovery** — a one-off prompt implicitly specifies a reusable task (inputs the author would vary, typed outputs, fixed constraints), and recovering that specification is a measurable, improvable induction task. The system (pipeline, UI, protocols) is the instrument; the research object is the induction problem. See [docs/positioning.md](docs/positioning.md) for the full framing against prior work.
 
-1. **Induction quality** — Can an LLM reliably induce typed signatures from raw prompts?
-2. **Model scaling** — Does the value of induced structure shrink as the base model gets more capable?
-3. **Parameterization granularity** — What governs the optimal number of fields to expose? (The novel question.)
-4. **Feedback loop** — Does closing a human-correction loop improve induction quality over time?
+1. **Recoverability** — Can an LLM reliably induce typed signatures from raw prompts?
+2. **Capability scaling** — Does induction quality scale with model size, and does induced structure retain value over raw prompting at frontier scale?
+3. **Parameterization granularity** — What governs how finely to parameterize? (The headline: quality *and* reuse have an interior optimum — more fields is not more flexibility.)
+4. **Improvability** — Is induction itself an optimization task? How much held-out quality does each human field-correction buy, under which supervision regime?
 
 ### Experiments
 
@@ -128,9 +128,13 @@ Results are saved to `data/eval/`. See [docs/](docs/) for the research framing a
 
 ### Key findings so far
 
+**Granularity (RQ3):** Sweeping induction granularity over 5 levels × 8 tasks, schema quality and reuse coverage **both peak at ~4 input fields** — an interior optimum. Over-decomposition renames and splits the canonical knobs, so it costs reuse as well as quality.
+
 **Scaling study (RQ2):** Induction quality scales monotonically with model size — 8B (judge: 0.67) → 70B (0.79) → 120B (0.93). Larger models induce better field names, types, and granularity.
 
-**Loop ablation (RQ4):** Bootstrap filtering (judge: 0.88) beats the no-loop baseline (0.82). Raw few-shot demos and GEPA instruction evolution do not improve over the baseline with the current model pairing.
+**Loop ablation (RQ4):** At a realistic tiny correction budget (7 corrections, ~50 metric calls), metric-validated demonstrations (BootstrapFewShot, judge: 0.88) beat both the no-loop baseline (0.82) and instruction evolution (GEPA, 0.79) — consistent with published guidance that demonstrations dominate at small data scales. Instruction evolution is being re-evaluated at its documented operating budget.
+
+**Signature tuning:** A lean 253-character task statement matches or beats a detailed 1,339-character procedural docstring on judged schema quality, and `Predict` ≈ `ChainOfThought` for this task — prompt-surface tuning beats prompt-surface inflation.
 
 ## Tech stack
 
