@@ -1,0 +1,101 @@
+{
+  "gold_sizes": {
+    "1": 5,
+    "2": 3,
+    "3": 5,
+    "4": 3,
+    "5": 5,
+    "6": 2,
+    "7": 5,
+    "8": 5
+  },
+  "mean_gold_size": 4.12,
+  "gold_independent_curves": {
+    "judge": {
+      "minimal": 0.805,
+      "conservative": 0.88,
+      "baseline": 0.895,
+      "thorough": 0.87,
+      "maximal": 0.865
+    },
+    "reuse_binary": {
+      "minimal": 0.094,
+      "conservative": 0.594,
+      "baseline": 0.719,
+      "thorough": 0.469,
+      "maximal": 0.656
+    },
+    "reuse_graded": {
+      "minimal": 0.424,
+      "conservative": 0.829,
+      "baseline": 0.829,
+      "thorough": 0.789,
+      "maximal": 0.792
+    }
+  },
+  "peaks": {
+    "judge": "baseline",
+    "reuse_binary": "baseline",
+    "reuse_graded": "conservative",
+    "field_f1": "baseline"
+  },
+  "strata": {
+    "gold\u22643": {
+      "n_cases": 3,
+      "field_count_by_level": {
+        "minimal": 1.667,
+        "conservative": 2.667,
+        "baseline": 3.333,
+        "thorough": 2.333,
+        "maximal": 7.333
+      },
+      "f1_by_level": {
+        "minimal": 0.433,
+        "conservative": 0.6,
+        "baseline": 0.619,
+        "thorough": 0.633,
+        "maximal": 0.286
+      },
+      "judge_by_level": {
+        "minimal": 0.88,
+        "conservative": 0.84,
+        "baseline": 0.853,
+        "thorough": 0.76,
+        "maximal": 0.787
+      },
+      "f1_peak": "thorough",
+      "judge_peak": "minimal"
+    },
+    "gold>3": {
+      "n_cases": 5,
+      "field_count_by_level": {
+        "minimal": 2.4,
+        "conservative": 4.8,
+        "baseline": 4.6,
+        "thorough": 6.0,
+        "maximal": 9.4
+      },
+      "f1_by_level": {
+        "minimal": 0.499,
+        "conservative": 0.897,
+        "baseline": 0.911,
+        "thorough": 0.688,
+        "maximal": 0.725
+      },
+      "judge_by_level": {
+        "minimal": 0.76,
+        "conservative": 0.904,
+        "baseline": 0.92,
+        "thorough": 0.936,
+        "maximal": 0.912
+      },
+      "f1_peak": "baseline",
+      "judge_peak": "thorough"
+    }
+  },
+  "entanglement_corr": {
+    "field_f1": -0.432,
+    "judge": -0.175,
+    "reuse_graded": -0.139
+  }
+}
